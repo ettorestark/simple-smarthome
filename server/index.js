@@ -12,6 +12,7 @@ mongoose.connect('mongodb://localhost/smart', { useNewUrlParser: true })
 	});
 
 //Import Routes
+const authRoute = require('./routes/auth');
 
 //Settings 
 app.set('port', process.env.PORT || 3000);
@@ -21,6 +22,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.json());
 
 //Routes
+app.use('/api/user/', authRoute);
 
 //Server
 app.listen(app.get('port'), () => {
