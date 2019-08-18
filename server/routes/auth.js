@@ -68,4 +68,17 @@ router.post('/sign_in', async (req, res) => {
 	})
 });
 
+
+router.post('/check', (req, res) => {
+	jwt.verify(req.body.token, process.env.TOKEN_PASSWORD, (err, data) => {
+		if(err) {
+			res.sendStatus(403);
+		}else {
+			res.json({
+				data
+			});
+		}
+	});
+});
+
 module.exports = router;
